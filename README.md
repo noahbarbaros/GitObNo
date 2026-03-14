@@ -5,16 +5,6 @@
 ---
 
 ## How it works
-
-```
-git push  →  GitHub Action  →  sync.js  →  Notion pages
-                                  ↑
-             @tryfabric/martian converts MD → Notion blocks
-             (tables, callouts, code, headings all preserved)
-
-npm run pull  →  pull.js  →  notion-to-md  →  .md files in your vault
-```
-
 - **Push** (automatic): every commit that touches `.md` files triggers the Action.
 - **Pull** (manual): run `npm run pull` locally whenever you want Notion edits back.
 
