@@ -1,0 +1,25 @@
+{
+  "name": "obsidian-notion-sync",
+  "version": "1.0.0",
+  "description": "Push your Obsidian vault to Notion on every git push. Pull Notion pages back as clean Markdown.",
+  "type": "module",
+  "bin": {
+    "notion": "./bin/notion.js"
+  },
+  "scripts": {
+    "sync": "node sync.js",
+    "sync:all": "SYNC_ALL=true node sync.js",
+    "sync:dry": "DRY_RUN=true node sync.js",
+    "pull": "node pull.js",
+    "notion": "node bin/notion.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "@tryfabric/martian": "^1.2.4",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "glob": "^10.3.10",
+    "gray-matter": "^4.0.3",
+    "notion-to-md": "^3.1.1"
+  }
+}
