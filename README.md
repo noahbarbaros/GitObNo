@@ -61,27 +61,6 @@ git commit -m "add notion sync"
 git push
 ```
 
-The Action will fire. Check the **Actions** tab in GitHub to watch it run.
-
----
-
-## What gets converted
-
-| Obsidian / Markdown | Notion output |
-|---|---|
-| `# H1` … `###### H6` | Heading 1–3 (Notion max) |
-| `**bold**`, `_italic_` | Bold, Italic |
-| `` `inline code` `` | Inline code |
-| ` ```language ``` ` | Code block with language |
-| `- [ ] task` | To-do block |
-| `> [!NOTE] …` | Blockquote with NOTE prefix |
-| `> [!WARNING] …` | Blockquote with WARNING prefix |
-| Tables | Notion table blocks |
-| `[[WikiLink]]` | Plain text (Notion has no wikilinks) |
-| `![[embed]]` | Removed |
-| `---` | Divider block |
-| YAML frontmatter | Stripped (not shown in Notion) |
-
 ---
 
 ## Commands
@@ -102,30 +81,3 @@ npm run pull
 
 For `pull`, set `OUTPUT_DIR` in `.env` to point directly at your vault folder.
 
----
-
-## Conflict strategy
-
-Two-way real-time sync is a recipe for data loss. This setup uses a deliberate model:
-
-- **Obsidian is the source of truth** for writing
-- **Notion is the destination** for sharing / collaboration
-- When Notion is edited, `npm run pull` brings those edits back as new `.md` files — you review and commit them
-
-This avoids the nightmare of a sync loop overwriting your work.
-
----
-
-## Troubleshooting
-
-**"Object not found" from Notion API**
-→ Make sure you added the integration to the root page (step 1.4 above)
-
-**Action succeeds but page not appearing**
-→ Check `NOTION_ROOT_PAGE_ID` — grab it fresh from the URL, it's easy to get a stale one
-
-**Tables look broken**
-→ Notion tables require a header row. Make sure your MD table has `| --- |` separator row
-
-**`git diff HEAD~1 HEAD` fails on first push**
-→ The script falls back to syncing all files automatically on the first commit
